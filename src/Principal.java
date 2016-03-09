@@ -1,3 +1,6 @@
+import impresora.Impresora;
+import impresora.ImpresoraHTML;
+import impresora.ImpresoraSinFormato;
 
 public class Principal {
 
@@ -7,21 +10,23 @@ public class Principal {
 	public static void main(String[] args) {
 		
 		Impresora impresora;
+
+        int tipo_formato = 0;
+        int tipo_salida = 0;
+        if(args.length > 0) {
+            tipo_formato = Integer.parseInt(args[0]);
+        }
+        if(args.length > 1) {
+            tipo_salida = Integer.parseInt(args[0]);
+        }
+
+        if(tipo_formato == 0) {
+            impresora = new ImpresoraSinFormato(tipo_salida);
+        } else {
+            impresora = new ImpresoraHTML(tipo_salida);
+        }
 		
-		if (args.length == 1)
-		{
-			impresora = new Impresora(Integer.parseInt(args[0]), 0);			
-		}
-		else if (args.length > 1)
-		{
-			impresora = new Impresora(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
-		}
-		else
-		{
-			impresora = new Impresora(0, 0);
-		}
-		
-		impresora.Imprimir("Hola mundo");
+		impresora.imprimir("Hola mundo");
 		
 	}
 
