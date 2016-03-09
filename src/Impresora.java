@@ -1,18 +1,24 @@
+import salida.Salida;
+import salida.SalidaConsola;
+import salida.SalidaImpresora;
 
 public class Impresora {
 
 	private int tipo_formato;
-	private int tipo_salida;
-	private SalidaConsola salida_consola;
-	private SalidaImpresora salida_impresora;
+    private Salida salida;
 
 	public Impresora(int tipo_formato, int tipo_salida) {
 		this.tipo_formato = tipo_formato;
-		this.tipo_salida = tipo_salida;
+        if (tipo_salida == 0) {
+            salida = new SalidaConsola();
+        } else {
+            new SalidaImpresora();
+        }
+
 	}
 
 	public void Imprimir(String mensaje) {
-		switch (this.tipo_formato)
+        switch (this.tipo_formato)
 		{
 			case 0: imprimirSinFormato(mensaje);
 			case 1: imprimirHTML(mensaje);
@@ -20,29 +26,11 @@ public class Impresora {
 	}
 
 	private void imprimirHTML(String mensaje) {
-		if (this.tipo_salida == 0)
-		{
-			this.salida_consola = new SalidaConsola();
-			this.salida_consola.Imprimir("<html>" + mensaje + "</html>");
-		} 
-		else
-		{
-			this.salida_impresora = new SalidaImpresora();
-			this.salida_impresora.Imprimir("<html>" + mensaje + "</html>");
-		}		
+		this.salida.imprimir("<html>" + mensaje + "</html>");
 	}
 
 	private void imprimirSinFormato(String mensaje) {
-		if (this.tipo_salida == 0)
-		{
-			this.salida_consola = new SalidaConsola();
-			this.salida_consola.Imprimir(mensaje);
-		} 
-		else
-		{
-			this.salida_impresora = new SalidaImpresora();
-			this.salida_impresora.Imprimir(mensaje);
-		}
+        this.salida.imprimir(mensaje);
 	}
 
 }
