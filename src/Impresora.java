@@ -14,12 +14,12 @@ public class Impresora {
 	public void Imprimir(String mensaje) {
 		switch (this.tipo_formato)
 		{
-			case 0: ImprimirSinFormato(mensaje);
-			case 1: ImprimirHTML(mensaje);
+			case 0: imprimirSinFormato(mensaje);
+			case 1: imprimirHTML(mensaje);
 		}
 	}
 
-	private void ImprimirHTML(String mensaje) {
+	private void imprimirHTML(String mensaje) {
 		if (this.tipo_salida == 0)
 		{
 			this.salida_consola = new SalidaConsola();
@@ -32,7 +32,7 @@ public class Impresora {
 		}		
 	}
 
-	private void ImprimirSinFormato(String mensaje) {
+	private void imprimirSinFormato(String mensaje) {
 		if (this.tipo_salida == 0)
 		{
 			this.salida_consola = new SalidaConsola();
